@@ -1,6 +1,5 @@
 import pandas as pd
-excel_file = '~/myPML/music_library.xlsx'
-library = pd.read_excel(excel_file)
+excel_file = 'music_library.xlsx'
 
 
                     # Welcome to myPML!
@@ -14,10 +13,9 @@ library = pd.read_excel(excel_file)
                     # Thank you!
 
 
-
     # Approximate rubric for difficulty scale
 ability_rubric = """
-Approximations based on (TX - UIL) 5A/6A and 3C/2C classifications:
+Approximations based on (TX - UIL) 5A/6A and 2C/3C classifications:
 10: Top-level HS Varsity
 9:  Very strong HS Varsity
 8:  Average HS Varsity
@@ -31,78 +29,79 @@ Approximations based on (TX - UIL) 5A/6A and 3C/2C classifications:
 """
 
     # Assign each grade level sheet to a variable
-all_grades = pd.read_excel(excel_file, index_col=2)
-grade_1 = pd.read_excel(excel_file, sheet_name=1, index_col=2)
-grade_2 = pd.read_excel(excel_file, sheet_name=2, index_col=2)
-grade_3 = pd.read_excel(excel_file, sheet_name=3, index_col=2)
-grade_4 = pd.read_excel(excel_file, sheet_name=4, index_col=2)
-grade_5 = pd.read_excel(excel_file, sheet_name=5, index_col=2)
+all_grades = pd.read_excel(excel_file)
+grade_1 = pd.read_excel(excel_file, sheet_name=1)
+grade_2 = pd.read_excel(excel_file, sheet_name=2)
+grade_3 = pd.read_excel(excel_file, sheet_name=3)
+grade_4 = pd.read_excel(excel_file, sheet_name=4)
+grade_5 = pd.read_excel(excel_file, sheet_name=5)
 
 
 
     # Take the search criteria and tell which classes to activate
 class Search(object):
-# ex) input() = user_search = Search(title, grade, difficulty, composer)
-                                        # if variable is empty, then null
+
     def __init__(self, title, grade, difficulty, composer):
         self.title = title
         self.grade = grade
         self.difficulty = difficulty
         self.composer = composer
 
-    def user_search():
-        if not 0 in options:
-            Title.search(self.title)
+    def user_search(self):
+        if self.title == 1:
+            Title.search()
 
-        if not 0 in options:
-            Grade.search(self.grade)
+        if self.grade == 1:
+            Grade.search()
 
-        if not 0 in options:
-            Difficulty.search(self.difficulty)
+        if self.difficulty == 1:
+            Difficulty.search()
 
-        if not 0 in option:
-            Composer.search(self.composer)
+        if self.composer == 1:
+            Composer.search()
 
         else:
-            all_grades[]
-            #return entire spreadsheet
+            print(all_grades)
+            # Return entire spreadsheet
 
 
 
 class Title(Search):
 
-    def search(title):
-        all_grades['Title']
-        #add in search criteria for the 'title' column
+    def search():
+        search_title = input("What piece are you looking for? ")
+        user_title = (all_grades['Title'].str.lower().str.contains(search_title))
+        print (all_grades[user_title])
 
 
 
 class Grade(Search):
 
-    def search(grade):
+    def search():
         given_grade = input("What grade level are you searching for? ")
         if given_grade == "1":
-            level = grade_1.head()  #incorrect method '.head()'; this only gives top # of rows for each column
+            print(grade_1)
         elif given_grade == "2":
-            level = grade_2.head()
+            print(grade_2)
         elif given_grade == "3":
-            level = grade_3.head()
+            print(grade_3)
         elif given_grade == "4":
-            level = grade_4.head()
+            print(grade_4)
         elif given_grade == "5":
-            level = grade_5.head()
-        elif given_grade == "help":
-            print(ability_rubric)
+            print(grade_5)
         else:
-            print("I don't understand that search criteria.")
-        return level
+            print("I don't understand that grade level.")
+            Grade.search()
 
 
 
 class Difficulty(Search):
 
-    def search(difficulty):
-        giventotal = input("What is your ensemble's overall ability level?")
+    def search():
+        print(ability_rubric)
+        given_total = input("What is your ensemble's overall ability level? ")
+        diff_search = (all_grades['Total'] == given_total)
+        print (all_grades[diff_search])
         # if only difficulty given:
             # search all sheets for difficulty
         # if grade and difficulty given:
@@ -112,40 +111,35 @@ class Difficulty(Search):
 
 class Composer(Search):
 
-    def search(composer):
-        name = input("Which composer/arranger are you looking for?")
-        all_grades[['Composer', 'Arranger']]
-        #returns all objects in 'composer' and 'arranger' columns
-        pd.read_excel(excel_file, index_col=3, index_col=4)
-        #search through all sheets (sheet_name = 0)
-        #search through composer & arranger columns (index_col = 3 & 4)
-            #combine both columns into one?
-            #ex)Comp/Arr:
-                #Bach/Daehn
-                #Grainger/Ragsdale
-                #Holst/Fennell
+    def search():
+        name = input("Which composers/arrangers are you looking for? ")
+        comp_search = (all_grades['Composer'].str.lower().str.contains(name) | (all_grades['Arranger'].str.lower().str.contains(name)))
+        print (all_grades[comp_search])
 
 
 
     # User enters their search criteria
-search_1 = input("Are you searching for a specific piece? >>")
-if search_1 == "yes":
-    title = input("What title? >>")
+search_1 = input("Are you searching for a specific piece? ")
+if search_1.lower() == "yes":
+    title = 1
 else:
     title = 0
-search_2 = input("Are you searching for a specific grade level? >>")
-if search_2 == "yes":
-    grade = input("Which grade level? >>")
+
+search_2 = input("Are you searching for a specific grade level? ")
+if search_2.lower() == "yes":
+    grade = 1
 else:
     grade = 0
-search_3 = input("Are you searching for a specific difficulty? >>")
-if search_3 == "yes":
-    difficulty = input("What difficulty from 1-10? >>")
+
+search_3 = input("Are you searching for a specific difficulty? ")
+if search_3.lower() == "yes":
+    difficulty = 1
 else:
     difficulty = 0
-search_4 = input("Are you searching for a specific composer or arranger? >>")
-if search_4 == "yes":
-    composer = input("Which comp/arr? >>")
+
+search_4 = input("Are you searching for a specific composer or arranger? ")
+if search_4.lower() == "yes":
+    composer = 1
 else:
     composer = 0
 
@@ -153,3 +147,4 @@ else:
 
     # User's search criteria submitted through class Search
 prompt = Search(title, grade, difficulty, composer)
+prompt.user_search()
