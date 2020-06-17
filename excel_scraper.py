@@ -31,6 +31,7 @@ Approximations based on (TX - UIL) 5A/6A and 3C/2C classifications:
 """
 
     # Assign each grade level sheet to a variable
+all_grades = pd.read_excel(excel_file, index_col=2)
 grade_1 = pd.read_excel(excel_file, sheet_name=1, index_col=2)
 grade_2 = pd.read_excel(excel_file, sheet_name=2, index_col=2)
 grade_3 = pd.read_excel(excel_file, sheet_name=3, index_col=2)
@@ -52,14 +53,18 @@ class Search(object):
     def user_search():
         if not 0 in options:
             Title.search(self.title)
+
         if not 0 in options:
             Grade.search(self.grade)
+
         if not 0 in options:
             Difficulty.search(self.difficulty)
+
         if not 0 in option:
             Composer.search(self.composer)
+
         else:
-            pass
+            all_grades[]
             #return entire spreadsheet
 
 
@@ -67,9 +72,9 @@ class Search(object):
 class Title(Search):
 
     def search(title):
-        pd.read_excel(excel_file, index_col=2)
-        #search through all sheets (sheet_name = 0)
-        #search through title column (index_col = 2)
+        all_grades['Title']
+        #add in search criteria for the 'title' column
+
 
 
 class Grade(Search):
@@ -77,7 +82,7 @@ class Grade(Search):
     def search(grade):
         given_grade = input("What grade level are you searching for? ")
         if given_grade == "1":
-            level = grade_1.head()
+            level = grade_1.head()  #incorrect method '.head()'; this only gives top # of rows for each column
         elif given_grade == "2":
             level = grade_2.head()
         elif given_grade == "3":
@@ -109,6 +114,8 @@ class Composer(Search):
 
     def search(composer):
         name = input("Which composer/arranger are you looking for?")
+        all_grades[['Composer', 'Arranger']]
+        #returns all objects in 'composer' and 'arranger' columns
         pd.read_excel(excel_file, index_col=3, index_col=4)
         #search through all sheets (sheet_name = 0)
         #search through composer & arranger columns (index_col = 3 & 4)
@@ -117,6 +124,7 @@ class Composer(Search):
                 #Bach/Daehn
                 #Grainger/Ragsdale
                 #Holst/Fennell
+
 
 
     # User enters their search criteria
@@ -140,6 +148,7 @@ if search_4 == "yes":
     composer = input("Which comp/arr? >>")
 else:
     composer = 0
+
 
 
     # User's search criteria submitted through class Search
