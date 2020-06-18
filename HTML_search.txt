@@ -1,0 +1,46 @@
+<!-- wp:html -->
+<html lang = "en">
+  <head>
+    <title>formDemo.html</title>
+    <meta charset = "UTF-8" />
+  </head>
+  <body>
+  <center>
+    <h1>Search Criteria</h1>
+    <form>
+       <fieldset>
+          <p>
+             <label>Title:</label>
+             <input type="text">
+             <label>Composer/Arranger:</label>
+             <input type="text">
+             <label>Grade Level:</label>
+             <select id = "myList">
+               <option value = "0"> </option>
+               <option value = "1">1</option>
+               <option value = "2">2</option>
+               <option value = "3">3</option>
+               <option value = "4">4</option>
+               <option value = "5">5</option>
+             </select>
+             <label>Overall Difficulty:</label>
+             <select id = "myList">
+               <option value = "0"> </option>
+               <option value = "1">1</option>
+               <option value = "2">2</option>
+               <option value = "3">3</option>
+               <option value = "4">4</option>
+               <option value = "5">5</option>
+               <option value = "6">6</option>
+               <option value = "7">7</option>
+               <option value = "8">8</option>
+               <option value = "9">9</option>
+               <option value = "10">10</option>
+             </select>
+          </p>
+       </fieldset>
+    </form>
+  </center>
+  </body>
+</html>
+<!-- /wp:html -->
